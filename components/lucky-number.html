@@ -1,0 +1,30 @@
+<!-- name lucky-number -->
+
+<template>
+  <p>Your lucky number is <span id="num"></span></p>
+</template>
+
+<style>
+  span {
+    color: red;
+  }
+</style>
+
+<script event="constructor">
+  this.span = this.shadow.querySelector("#num");
+</script>
+
+<script event="connected">
+  this.i = setInterval((_) => {
+    const num = Math.random();
+    this.span.innerText = num.toString();
+  }, 100);
+</script>
+
+<script event="disconnected">
+  clearInterval(this.i);
+</script>
+
+<script event="getter" name="current">
+  return this.span.innerText;
+</script>

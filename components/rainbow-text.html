@@ -1,0 +1,20 @@
+<!-- name rainbow-text -->
+
+<template>
+    <div id="rainbow">
+        <slot></slot>
+    </div>
+</template>
+
+<script event="connected">
+    this.i = setInterval(_ => {
+        const h = Math.floor(Math.random() * 360);
+        const s = 80 + Math.floor(Math.random() * 10);
+        const elem = this.shadow.getElementById("rainbow");
+        elem.style.color = `hsl(${h}, ${s}%, 50%)`;
+    }, 300);
+</script>
+
+<script event="disconnected">
+    clearInterval(this.i);
+</script>
